@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatProductsTable extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -21,7 +21,6 @@ class CreatProductsTable extends Migration
             $table->integer('user_controller_id');
             $table->timestamps();
         });
-
     }
 
     /**
