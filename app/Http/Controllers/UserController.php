@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-//use App\Product;
-//use App\Order;
-//use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\Auth;
+use App\Product;
+use App\Order;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
