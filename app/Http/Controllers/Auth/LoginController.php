@@ -42,10 +42,12 @@ class LoginController extends Controller
         $social_user = Socialite::driver($website)
             ->stateless()
             ->user();
+
+//        dd($social_user->avatar);
         $user = User::firstOrCreate([
-            'email' => $social_user->email
-        ], [
+            'email' => $social_user->email,
                 'name' => $social_user->name ?? $social_user->nickname,
+                'avatar' => $social_user->avatar,
                 'password' => Hash::make(Str::random(20))
             ]
         );

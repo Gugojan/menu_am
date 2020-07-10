@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Order;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -75,8 +76,9 @@ class UserController extends Controller
     {
         $order = order::all();
         $user_id = $id;
+        $user = user::all();
         return response()->view('user.order',
-            compact('user_id','order')
+            compact('user_id','order',"user")
         );
     }
 
