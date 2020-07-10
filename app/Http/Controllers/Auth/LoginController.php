@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -29,6 +32,28 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+
+    public function socialites($website){
+        return socialite::driver($website)->redirect();
+
+    }
+
+    public function socialiteCallback($website){
+        $social_user = Socialite::driver($website)
+            ->stateless()
+            ->user();
+        $user = User::firstOrCreate([
+            'email' => $social_user->email
+        ], [
+                'name' => $social_user->name ?? $social_user->nickname,
+                'password' => Hash::make(Str::random(20))
+            ]
+        );
+
+        Auth::login($user);
+        return redirect('user/order');
+
+    }
 
     public function redirectTo(){
         switch (auth()->user()->user_type_id){
