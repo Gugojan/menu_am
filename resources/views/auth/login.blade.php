@@ -62,6 +62,20 @@
                                        style = "font-size:20px">
                                     </i>
                                 </a>
+
+                                <a href="{{url('/login/google')}}"
+                                   class="btn btn-outline-primary">
+                                    <i class="fa fa-google" aria-hidden="true"
+                                       style = "font-size:20px">
+                                    </i>
+                                </a>
+
+                                <a href="{{url('/login/facebook')}}"
+                                   class="btn btn-outline-primary">
+                                    <i class="fa fa-facebook" aria-hidden="true"
+                                       style = "font-size:20px">
+                                    </i>
+                                </a>
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
