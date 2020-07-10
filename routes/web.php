@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes(['verify'=>true]);
+
+Route::get('/home', 'HomeController@index')
+    ->middleware('verified')
+    ->name('home');
+Route::resource('admin/product', 'ProductController')->middleware('product');
+Route::resource('user/order', 'UserController')->middleware('user');

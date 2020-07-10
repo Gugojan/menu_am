@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\model\Product;
+use App\Product;
+use App\Order;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,7 +15,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        $order = Order::all();
+        return response()->view('admin.products.index',
+            compact('products','order')
+        );
     }
 
     /**
@@ -24,24 +29,35 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return response()->view('admin.products.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-        $product = new Product();
-        $product->name = $request->name;
-        $product->category = $request->category;
-        $product->price = $request->price;
-        $product->save();
-//        return  redirect('/product')
-//            ->with(['message' => 'The product was successfully creating.']);
+        $products = new Product();
+        if(isset($request->image) && $request->image->getClientOriginalName()){
+            $ext = $request->image->getClientOriginalExtension();
+            $file = rand(1,999)."."."$ext";
+            $request->image->storeAs('public/images', $file);
+        }else{
+            if(!$products->image){
+                $file = '';
+            }else{
+                $file = $products->image;
+            }
+        }
+        $products->image = $file;
+        $products->product = $request->product;
+        $products->price = $request->price;
+        $products->save();
+        return  redirect('admin/product')
+            ->with(['message' => 'The product was successfully created']);
     }
 
     /**
@@ -52,7 +68,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $products = Product::find($id);
+        return response()->view('admin.products.show',
+            compact('products'));
     }
 
     /**
@@ -63,7 +81,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $products = Product::find($id);
+
+        return response()->view('admin.products.edit',
+            ['products' => $products]);
     }
 
     /**
@@ -71,21 +92,40 @@ class ProductController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
     {
-        //
+        $products = new Product;
+        if(isset($request->image) && $request->image->getClientOriginalName()){
+            $ext = $request->image->getClientOriginalExtension();
+            $file = rand(1,999)."."."$ext";
+            $request->image->storeAs('public/images', $file);
+        }else{
+            if(!$products->image){
+                $file = '';
+            }else{
+                $file = $products->image;
+            }
+        }
+        Product::where('id', $id)->update([
+            'product'=> $request->product,
+            'price'=> $request->price,
+            'image' => $file,
+        ]);
+        return  redirect('admin/product');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
-        //
+        Product::destroy($id);
+
+        return  redirect('admin/product');
     }
 }
