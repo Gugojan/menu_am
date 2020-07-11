@@ -42,19 +42,22 @@ class LoginController extends Controller
         $social_user = Socialite::driver($website)
             ->stateless()
             ->user();
-
-//        dd($social_user->avatar);
-        $user = User::firstOrCreate([
-            'email' => $social_user->email,
-                'name' => $social_user->name ?? $social_user->nickname,
-                'avatar' => $social_user->avatar,
-                'password' => Hash::make(Str::random(20))
-            ]
-        );
-
+        $user = User::where('email', $social_user->email)->first();
+        if(!$user) {
+            $user = User::firstOrCreate([
+                    'email' => $social_user->email,
+                    'name' => $social_user->name ?? $social_user->nickname,
+                    'avatar' => $social_user->avatar,
+                    'password' => Hash::make(Str::random(20))
+                ]
+            );
+        }
         Auth::login($user);
-        return redirect('user/order');
-
+        if ($user-> user_type_id == 2) {
+            return redirect('user/order');
+        } else {
+            return redirect('admin/product');
+        }
     }
 
     public function redirectTo(){
