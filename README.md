@@ -1,4 +1,4 @@
-git clone https://github.com/jasmineNik/eshop.git
+git clone https://github.com/Gugojan/menu_am.git
 composer install
 copy .env.example and create .env file or "copy .env.example .env"
 npm install
