@@ -111,7 +111,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        Order::destroy($id);
 
-        //
+        return  redirect('user/order/create');
     }
 }

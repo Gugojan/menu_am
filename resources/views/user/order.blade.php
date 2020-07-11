@@ -14,13 +14,16 @@
             </div>
         @endif
         <div class="content">
+            <div class="row justify-content-md-center text-danger">
+                <h1>Order List</h1>
+            </div>
 
-            <h1>Order List</h1>
             <table class = "table table-striped">
 
                 <thead>
                 <tr>
-                    <td>Product_ID</td>
+                    <td>Product_name</td>
+                    <td>Product_price</td>
                     <td>Product_image</td>
                 </tr>
                 </thead>
@@ -29,13 +32,23 @@
                 @foreach($order as $o)
                     @if($o->user_id == $user_id)
                     <tr>
-                        <td>{{$o->product_id}}</td>
+
 
                         @foreach($product as $prod)
+
                         @if($prod->id == $o->product_id)
+                                <td>{{$prod->product}}</td>
+                                <td>{{$prod->price}}</td>
                             <td><img src = "{{asset('storage/images/'.$prod->image)}}" style = "width:200px; height:150px"/></td>
                         @endif
                         @endforeach
+                        <td>
+                        <form action="{{url("user/order/{$o->id}")}}" method = "post">
+                            @method('DELETE')
+                            @csrf
+                            <input type="submit" value="Delete" class="btn btn-danger" >
+                        </form>
+                        </td>
                     @endif
                         @endforeach
                     </tr>

@@ -17,8 +17,8 @@
             </div>
         @endif
         <div class="content">
-            <div class="title m-b-md">
-                Product
+            <div class="row justify-content-md-center text-danger">
+               <h1>Product</h1>
             </div>
 
             <table class = "table table-striped">
