@@ -32,7 +32,15 @@ class UserController extends Controller
      */
     public function create()
     {
-       //
+        $products = Product::all();
+        $order = Order::with('product')->where('user_id', Auth::id())->get();
+        $user = User::all();
+//        $user = User::with('avatar')->where('user_id', Auth::id())->get();
+
+        //dd($order[0]->product->product);
+        return response()->view('user.page',
+            compact('products', 'order', 'user')
+        );
     }
 
     /**
@@ -75,10 +83,11 @@ class UserController extends Controller
     public function edit($id)
     {
         $order = order::all();
+        $product = Product::all();
         $user_id = $id;
         $user = user::all();
         return response()->view('user.order',
-            compact('user_id','order',"user")
+            compact('user_id','order',"user",'product')
         );
     }
 

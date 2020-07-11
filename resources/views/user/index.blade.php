@@ -4,7 +4,7 @@
         @if (Route::has('login'))
             <div class="top-right links">
                 @auth
-                    <a href="{{ url('user/order') }}">Home</a>
+                    <a href="{{ url('user/order/create ') }}">Home</a>
                     <div class="top-right links">
                     <a href="{{ url('user/order/'.auth()->user()->id.'/edit') }}">order</a>
                     </div>
