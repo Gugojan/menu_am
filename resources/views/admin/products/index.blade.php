@@ -4,7 +4,7 @@
         @if (Route::has('login'))
             <div class="top-right links">
                 @auth
-                    <a href="{{ url('admin/product') }}">Home</a>
+                    <a href="{{ url('admin/order') }}">Order_list</a>
                 @else
                     <a href="{{ route('login') }}">Login</a>
                     @if (Route::has('register'))
@@ -14,8 +14,8 @@
             </div>
         @endif
         <div class="content">
-            <div class="title m-b-md">
-                Product
+            <div  class="col-md-4 offset-md-5 text-danger">
+               <h1>Product</h1>
             </div>
             <a href="{{url("admin/product/create")}}" class = "btn btn-primary">Add new product</a>
 
@@ -52,29 +52,6 @@
                 @endforeach
                 </tbody>
 
-            </table>
-
-            <h1>Order List</h1>
-            <table class = "table table-striped">
-                <thead>
-
-                <tr>
-                    <td>ID</td>
-                    <td>User_ID</td>
-                    <td>Product_ID</td>
-
-
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($order as $o)
-                    <tr>
-                        <td>{{$o->id}}</td>
-                        <td>{{$o->user_id}}</td>
-                        <td>{{$o->product_id}}</td>
-                    @endforeach
-                    </tr>
-                </tbody>
             </table>
 
         </div>

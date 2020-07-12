@@ -16,9 +16,15 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        $order = Order::all();
         return response()->view('admin.products.index',
-            compact('products','order')
+            compact('products')
+        );
+    }
+    public function order()
+    {
+        $order = Order::all();
+        return response()->view('admin.products.order',
+            compact('order')
         );
     }
 
