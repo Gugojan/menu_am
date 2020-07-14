@@ -32,3 +32,9 @@ Route::get('/login/{website}', 'Auth\LoginController@socialites');
 Route::get('/login/{website}/callback', 'Auth\LoginController@socialiteCallback');
 
 Route::get('/admin/order', 'ProductController@order');
+Route::get('/products/export',
+    'ProductController@exportProducts')
+    ->name('product_export');
+Route::post('/products/import',
+    'ProductController@importProducts')
+    ->name('product_import');
