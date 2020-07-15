@@ -5,6 +5,7 @@ npm install
 npm run dev
 php artisan key:generate
 php artisan serv
+
              ***** .env ****
              
 GITHUB_CLIENT_ID = 
