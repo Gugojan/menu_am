@@ -35,8 +35,6 @@
                     <td>Image</td>
                     <td>Product</td>
                     <td>Price</td>
-
-
                 </tr>
                 </thead>
                 <tbody>
