@@ -16,6 +16,7 @@ class ProductImport implements ToModel
     {
 //        dd($row);
         return new Product([
+            "image"=>$row[1],
             "product"=>$row[2],
             "price"=>$row[3]
         ]);
