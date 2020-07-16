@@ -6,9 +6,11 @@
                 @auth
                     <a href="{{ url('admin/order') }}">Order_list</a>
                 @else
-                    <a href="{{ route('login') }}">Login</a>
+                    <a href="{{ route('login') }}">
+                    @lang('translate.login')</a>
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}">Register</a>
+                        <a href="{{ route('register') }}">
+                            @lang('translate.register')</a>
                     @endif
                 @endauth
             </div>
@@ -17,7 +19,8 @@
             <div  class="col-md-4 offset-md-5 text-danger">
                <h1>Product</h1>
             </div>
-            <a href="{{url("admin/product/create")}}" class = "btn btn-primary">Add new product</a>
+            <a href="{{url("admin/product/create")}}" class = "btn btn-primary">
+                @lang('translate.add_new_product')</a>
             <div class="w-100"></div>
             <a href="{{route('product_export')}}" class="btn btn-outline-primary  offset-md-3 ">
                 Export Products</a>
@@ -25,8 +28,10 @@
                   enctype="multipart/form-data">
                 @csrf
                 <input type="file" name="file" class="col-md-3">
-                <input type="submit" value="Import Products"
+                <input type="submit" value="{{__('translate.import_product')}}"
                        class="btn btn-outline-success">
+                <a href="{{route('pdf')}}"  class="btn btn-outline-success ">
+                    pdf</a>
             </form>
             <table class = "table table-striped">
                 <thead>

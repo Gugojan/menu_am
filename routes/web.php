@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\App;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Route::get('/{lang?}', function ($lang=null) {
+//    if (!empty($lang)){
+//        App::setLocale($lang);
+//    }
+//    return view('welcome');
+//});
 Route::get('/', function () {
+    $lang = request()->has('lang') ? request()->lang :"";
+    if (!empty($lang)){
+        App::setLocale($lang);
+    }
     return view('welcome');
 });
 
@@ -40,3 +50,7 @@ Route::get('/products/export',
 Route::post('/products/import',
     'ProductController@importProducts')
     ->name('product_import');
+
+Route::get('/product/pdf',
+    'ProductController@productPdf')
+    ->name('pdf');
