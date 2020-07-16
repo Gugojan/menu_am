@@ -5,8 +5,9 @@ npm install
 npm run dev
 php artisan key:generate
 php artisan serv
+
              ***** .env ****
-             
+      
 GITHUB_CLIENT_ID = 
 GITHUB_CLIENT_SECRET = 
 GITHUB_CALLBACK_URL = http://mymenyu.am/login/github/callback
