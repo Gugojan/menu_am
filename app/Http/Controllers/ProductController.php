@@ -8,10 +8,17 @@ use App\Product;
 use App\Order;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use niklasravnsborg\LaravelPdf\Facades\Pdf;
+use niklasravnsborg\LaravelPdf\Pdf as MPDF;
+use Illuminate\Support\Facades\App;
 
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,6 +26,10 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $lang = request()->has('lang') ? request()->lang :"";
+        if (!empty($lang)){
+            App::setLocale($lang);
+        }
         $products = Product::all();
         return response()->view('admin.products.index',
             compact('products')
@@ -147,5 +158,15 @@ class ProductController extends Controller
 
     public function exportProducts(){
       return  Excel::download(new ProductExport(), "products.xlsx");
+    }
+
+    public function productPdf() {
+        $pdf = new MPDF('<h1>Hello from Menu.am</h1>');
+//        $pdf = Pdf::loadView('test',
+//            [
+//                'data' => 'hello  from data',
+//                'name' => 'Jasmine'
+//            ]);
+        return $pdf->download('document.pdf');
     }
 }

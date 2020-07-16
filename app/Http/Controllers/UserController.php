@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Billing\Payment;
 use App\Product;
 use App\Order;
+use App\Sales\TopUsers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,8 +51,11 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
+    public function store(Request $request,Payment $payment,TopUsers $users)
     {
+        $users->chaneDiscount();
+//        $payment = new Payment();
+        dd($payment->charge(800));
         $order = Order::create([
             'user_id' => Auth::id(),
             'product_id' => $request->product_id,

@@ -82,7 +82,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Welcome to Menu.am
+                    {{__("translate.welcome")}} to Menu.am
                 </div>
 
 
