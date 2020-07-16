@@ -161,12 +161,12 @@ class ProductController extends Controller
     }
 
     public function productPdf() {
-        $pdf = new MPDF('<h1>Hello from Menu.am</h1>');
-//        $pdf = Pdf::loadView('test',
-//            [
-//                'data' => 'hello  from data',
-//                'name' => 'Jasmine'
-//            ]);
+        $order = Order::all();
+//        $pdf = new MPDF('<h1>Hello from Menu.am</h1>');
+        $pdf = Pdf::loadView('test',
+            [
+                'order' => $order,
+            ]);
         return $pdf->download('document.pdf');
     }
 }

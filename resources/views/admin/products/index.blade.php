@@ -30,8 +30,9 @@
                 <input type="file" name="file" class="col-md-3">
                 <input type="submit" value="{{__('translate.import_product')}}"
                        class="btn btn-outline-success">
-                <a href="{{route('pdf')}}"  class="btn btn-outline-success ">
-                    pdf</a>
+                <div class="w-100"></div>
+                <a href="{{route('pdf')}}"  class="btn btn-outline-success offset-md-3">
+                    Export pdf</a>
             </form>
             <table class = "table table-striped">
                 <thead>
