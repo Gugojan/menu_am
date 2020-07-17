@@ -9,6 +9,7 @@ use App\Sales\TopUsers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use niklasravnsborg\LaravelPdf\Facades\Pdf;
 
 class UserController extends Controller
 {
@@ -119,5 +120,21 @@ class UserController extends Controller
         Order::destroy($id);
 
         return  redirect('user/order/create');
+    }
+
+    public function productPdf(){
+        $order = order::all();
+        $product = Product::all();
+        $user_id = auth()->user()->id;
+        $user = user::all();
+//        dd($user);
+        $pdf = Pdf::loadView('user.pdfOrder',[
+            'user_id' => $user_id,
+            'order' => $order,
+            "user" => $user,
+            'product' => $product,
+        ]);
+
+        return $pdf->download('user_order.pdf');
     }
 }

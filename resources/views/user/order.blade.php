@@ -5,6 +5,9 @@
             <div class="top-right links">
                 @auth
                     <a href="{{ url('user/order/create ') }}">Home</a>
+                    <div class="w-100"></div>
+                    <a href="{{route('user_pdf')}}"  class="btn btn-outline-success ">
+                        Export pdf</a>
                 @else
                     <a href="{{ route('login') }}">Login</a>
                     @if (Route::has('register'))

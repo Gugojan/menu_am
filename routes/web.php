@@ -54,3 +54,6 @@ Route::post('/products/import',
 Route::get('/product/pdf',
     'ProductController@productPdf')
     ->name('pdf');
+Route::get('/user/pdf',
+    'UserController@productPdf')
+    ->name('user_pdf');
