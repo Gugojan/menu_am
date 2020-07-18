@@ -54,3 +54,6 @@ Route::post('/products/import',
 Route::get('/product/pdf',
     'ProductController@productPdf')
     ->name('pdf');
+Route::get('products/add_to_cart', 'UserController@addToCart')->name('addToCart');
+
+Route::get('products/show_cart', 'UserController@showCart');

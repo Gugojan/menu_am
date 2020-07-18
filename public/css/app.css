@@ -13972,3 +13972,30 @@ a.text-dark:focus {
   }
 }
 
+.fa-stack[data-count]:after {
+  position: absolute;
+  right: 0%;
+  top: 0%;
+  content: attr(data-count);
+  font-size: 40%;
+  padding: 0.6em;
+  border-radius: 999px;
+  line-height: 0.75em;
+  color: white;
+  color: #DF0000;
+  text-align: center;
+  min-width: 2em;
+  font-weight: bold;
+  background: white;
+  border-style: solid;
+}
+
+.fa-circle {
+  color: #00dfa0;
+}
+
+.red-cart {
+  color: #00dfc5;
+  background: white;
+}
+
