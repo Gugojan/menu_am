@@ -50,7 +50,8 @@ class CheckoutController extends Controller
                 "receipt_email" => $request->user()->email,
                 "metadata" => ["order_id" => "2"]
             ]);
-            return back()->with('success_message','Thank you, your payment has been successfully accepted!');
+            $message =' Thank you '. $request->user()->name.', your payment has been successfully accepted!';
+            return back()->with('success_message',$message);
         }catch (Exception $error){
             $error->getMessage();
         }
