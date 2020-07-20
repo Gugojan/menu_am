@@ -52,17 +52,20 @@
                     <td rowspan="2">
                         {{$cart->getTotalPrice()}}
                     </td>
-                    <td>        <form action="/pay" method="POST">
-                            <script
-                                src="https://checkout.stripe.com/checkout.js"
-                                class="stripe-button"
-                                data-key="pk_test_51H6iInGHMPQJ7YXOEuOLMo8kZ8GImNviXwqgjDmv6OuiFRd5QE5R0UXPhyii1JnU5uYtT6cXJ7xaW1TjMKctWE4Q00ygE08s9R"
-                                data-name="T-shirt"
-                                data-description="Comfortable cotton t-shirt"
-                                data-amount={{$cart->getTotalPrice().'00'}}
-                                    data-currency="usd">
-                            </script>
-                        </form>
+                    <td>
+
+                        <a href="{{route('checkout.index')}}"><input type="submit" value = "pay" class="btn btn-outline-success"></a>
+{{--                        <form action="/pay" method="POST">--}}
+{{--                            <script--}}
+{{--                                src="https://checkout.stripe.com/checkout.js"--}}
+{{--                                class="stripe-button"--}}
+{{--                                data-key="pk_test_51H6iInGHMPQJ7YXOEuOLMo8kZ8GImNviXwqgjDmv6OuiFRd5QE5R0UXPhyii1JnU5uYtT6cXJ7xaW1TjMKctWE4Q00ygE08s9R"--}}
+{{--                                data-name="T-shirt"--}}
+{{--                                data-description="Comfortable cotton t-shirt"--}}
+{{--                                data-amount={{$cart->getTotalPrice().'00'}}--}}
+{{--                                    data-currency="usd">--}}
+{{--                            </script>--}}
+{{--                        </form>--}}
                     </td>
                 </tr>
                 </tfoot>

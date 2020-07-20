@@ -62,3 +62,7 @@ Route::get('/user/pdf',
 Route::get('products/add_to_cart', 'UserController@addToCart')->name('addToCart');
 
 Route::get('products/show_cart', 'UserController@showCart');
+
+Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
+
+Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
