@@ -6,7 +6,7 @@ use App\Events\OrderShipped;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class OrderShippeListener
+class OrderShippedListener
 {
     /**
      * Create the event listener.
@@ -26,7 +26,6 @@ class OrderShippeListener
      */
     public function handle(OrderShipped $event)
     {
-//        dd($event);
         return $event;
     }
 }
