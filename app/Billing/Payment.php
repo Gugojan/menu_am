@@ -21,6 +21,7 @@ class Payment
         'discount'=>$this->discount,
     ];
 }
+    
 public function setDiscount($discount){
         $this->discount=$discount;
 }
