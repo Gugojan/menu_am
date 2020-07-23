@@ -66,10 +66,3 @@ Route::get('products/show_cart', 'UserController@showCart');
 Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
 
 Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
-
-Route::get('event', function (){
-    event(new \App\Events\OrderShipped('on way'));
-});
-Route::get('listen', function (){
-    return view('EventListener');
-});
